@@ -71,6 +71,7 @@
                     <span>{{ $t("Last Result") }}:</span>
                     <span class="keyword">{{ monitor.dns_last_result }}</span>
                 </span>
+                <span v-if="monitor.type === 'ntp'">NTP: {{ monitor.hostname }}:{{ monitor.port }}</span>
                 <span v-if="monitor.type === 'docker'">Docker container: {{ monitor.docker_container }}</span>
                 <span v-if="monitor.type === 'gamedig'">
                     Gamedig - {{ monitor.game }}: {{ monitor.hostname }}:{{ monitor.port }}

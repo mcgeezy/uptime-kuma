@@ -21,6 +21,17 @@ test.describe("Monitor Form", () => {
         await restoreSqliteSnapshot(page);
     });
 
+    test("ntp monitor defaults", async ({ page }, testInfo) => {
+        await page.goto("./add");
+        await login(page);
+        await selectMonitorType(page, "ntp");
+
+        await expect(page.getByTestId("hostname-input")).toBeVisible();
+        await expect(page.locator("#port")).toHaveValue("123");
+
+        await screenshot(testInfo, page);
+    });
+
     test("condition ui", async ({ page }, testInfo) => {
         await page.goto("./add");
         await login(page);

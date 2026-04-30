@@ -309,5 +309,8 @@
     "hostnameCannotBeIP": "DNS hostname cannot be an IP. Did you mean to use the resolver field?",
     "invalidHostnameOrIP": "Invalid hostname or IP. Hostname must be a valid FQDN. Cannot use wildcard. Can have an underscore, or end with a dot.",
     "wildcardOnlyForDNS": "Wildcard hostnames are only supported for DNS monitors.",
+    "stratum": "Stratum",
+    "offset_ms": "Offset (ms)",
+    "delay_ms": "Delay (ms)",
     "invalidURL": "Invalid URL"
 }

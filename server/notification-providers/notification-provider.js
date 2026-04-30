@@ -41,6 +41,7 @@ class NotificationProvider {
             case "port":
             case "dns":
             case "gamedig":
+            case "ntp":
             case "steam":
                 if (monitorJSON["port"]) {
                     return monitorJSON["hostname"] + ":" + monitorJSON["port"];

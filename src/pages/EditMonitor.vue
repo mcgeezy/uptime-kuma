@@ -81,6 +81,7 @@
                                         <option value="json-query">HTTP(s) - {{ $t("Json Query") }}</option>
                                         <option value="kafka-producer">Kafka Producer</option>
                                         <option value="mqtt">MQTT</option>
+                                        <option value="ntp">NTP</option>
                                         <option value="rabbitmq">RabbitMQ</option>
                                         <option v-if="!$root.info.isContainer" value="sip-options">
                                             SIP Options Ping
@@ -481,6 +482,7 @@
                                     monitor.type === 'steam' ||
                                     monitor.type === 'gamedig' ||
                                     monitor.type === 'mqtt' ||
+                                    monitor.type === 'ntp' ||
                                     monitor.type === 'radius' ||
                                     monitor.type === 'tailscale-ping' ||
                                     monitor.type === 'smtp' ||
@@ -693,6 +695,7 @@
                                     monitor.type === 'steam' ||
                                     monitor.type === 'gamedig' ||
                                     monitor.type === 'mqtt' ||
+                                    monitor.type === 'ntp' ||
                                     monitor.type === 'radius' ||
                                     monitor.type === 'smtp' ||
                                     monitor.type === 'snmp' ||
@@ -3575,14 +3578,19 @@ message HealthCheckResponse {
                 }
             }
 
-            // Set default port for DNS if not already defined
-            if (!this.monitor.port || this.monitor.port === "53" || this.monitor.port === "1812") {
+            // Set default port for protocol-based monitors if not already defined
+            if (
+                !this.monitor.port ||
+                ["53", "123", "161", "1812"].includes(String(this.monitor.port))
+            ) {
                 if (this.monitor.type === "dns") {
                     this.monitor.port = "53";
                 } else if (this.monitor.type === "radius") {
                     this.monitor.port = "1812";
                 } else if (this.monitor.type === "snmp") {
                     this.monitor.port = "161";
+                } else if (this.monitor.type === "ntp") {
+                    this.monitor.port = "123";
                 } else if (this.monitor.type === "globalping" && this.monitor.subtype === "ping") {
                     this.monitor.port = "80";
                 } else {
@@ -3594,6 +3602,8 @@ message HealthCheckResponse {
             if (oldType || this.isAdd) {
                 if (this.monitor.type === "snmp") {
                     // snmp is not expected to be executed via the internet => we can choose a lower default timeout
+                    this.monitor.timeout = 5;
+                } else if (this.monitor.type === "ntp") {
                     this.monitor.timeout = 5;
                 } else if (this.monitor.type === "ping") {
                     this.monitor.timeout = 10;
@@ -3926,7 +3936,7 @@ message HealthCheckResponse {
 
             // Validate hostname field input for various monitors
             if (
-                ["dns", "port", "ping", "steam", "gamedig", "radius", "tailscale-ping", "smtp", "snmp"].includes(
+                ["dns", "port", "ping", "steam", "gamedig", "ntp", "radius", "tailscale-ping", "smtp", "snmp"].includes(
                     this.monitor.type
                 ) &&
                 this.monitor.hostname

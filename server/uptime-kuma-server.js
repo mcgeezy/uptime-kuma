@@ -116,6 +116,7 @@ class UptimeKumaServer {
         UptimeKumaServer.monitorTypeList["dns"] = new DnsMonitorType();
         UptimeKumaServer.monitorTypeList["postgres"] = new PostgresMonitorType();
         UptimeKumaServer.monitorTypeList["mqtt"] = new MqttMonitorType();
+        UptimeKumaServer.monitorTypeList["ntp"] = new NtpMonitorType();
         UptimeKumaServer.monitorTypeList["smtp"] = new SMTPMonitorType();
         UptimeKumaServer.monitorTypeList["group"] = new GroupMonitorType();
         UptimeKumaServer.monitorTypeList["snmp"] = new SNMPMonitorType();
@@ -568,6 +569,7 @@ const { WebSocketMonitorType } = require("./monitor-types/websocket-upgrade");
 const { DnsMonitorType } = require("./monitor-types/dns");
 const { PostgresMonitorType } = require("./monitor-types/postgres");
 const { MqttMonitorType } = require("./monitor-types/mqtt");
+const { NtpMonitorType } = require("./monitor-types/ntp");
 const { SMTPMonitorType } = require("./monitor-types/smtp");
 const { GroupMonitorType } = require("./monitor-types/group");
 const { SNMPMonitorType } = require("./monitor-types/snmp");
