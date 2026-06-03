@@ -11,7 +11,8 @@ Uptime Kuma is an easy-to-use self-hosted monitoring tool.
 ## Additions added in mcgeezy/uptime-kuma
 
 - NTP Monitor
-
+- Added static network gateway to docker-compose.yaml for tests to localhost.  Use 172.25.0.1 for tests to services running on host.
+  
 ## ⭐ Features
 
 - Monitoring uptime for HTTP(s) / TCP / HTTP(s) Keyword / HTTP(s) Json Query / Websocket / Ping / DNS Record / Push / Steam Game Server / Docker Containers
