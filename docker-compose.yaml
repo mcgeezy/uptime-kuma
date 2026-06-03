@@ -4,9 +4,22 @@ services:
     build:
        context: .
        dockerfile: Dockerfile
+    image: mcgeezy-kuma:latest
     container_name: uptime-kuma
     restart: always
     ports:
       - "3001:3001"
     volumes:
       - ./data:/app/data
+    networks:
+      - kuma_net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  kuma_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/24
+          gateway: 172.25.0.1
