@@ -53,6 +53,10 @@ docker compose up -d --build
 
 ## 🖼 More Screenshots
 
+NTP Monitor:
+
+<img src="public/Screenshot from 2026-06-02 19-51-25.png"  width="512" alt="Uptime Kuma NTP Monitor Configuration Page" />
+
 Light Mode:
 
 <img src="https://uptime.kuma.pet/img/light.jpg" width="512" alt="Uptime Kuma Light Mode Screenshot of how the Dashboard looks" />
