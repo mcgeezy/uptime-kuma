@@ -11,3 +11,19 @@ services:
       - "3001:3001"
     volumes:
       - ./data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - kuma_net
+    dns:
+      - 172.18.4.1
+      - 10.55.55.3
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  kuma_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.4.0/24
+          gateway: 172.18.4.1
