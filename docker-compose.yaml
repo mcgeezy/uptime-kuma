@@ -11,15 +11,3 @@ services:
       - "3001:3001"
     volumes:
       - ./data:/app/data
-    networks:
-      - kuma_net
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-
-networks:
-  kuma_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.25.0.0/24
-          gateway: 172.25.0.1
