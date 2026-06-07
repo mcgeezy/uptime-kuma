@@ -11,8 +11,7 @@ Uptime Kuma is an easy-to-use self-hosted monitoring tool.
 ## Additions added in mcgeezy/uptime-kuma
 
 - NTP Monitor
-- Added static network gateway to docker-compose.yaml for tests to localhost.  Use 172.25.0.1 for tests to services running on host.
-  
+
 ## ⭐ Features
 
 - Monitoring uptime for HTTP(s) / TCP / HTTP(s) Keyword / HTTP(s) Json Query / Websocket / Ping / DNS Record / Push / Steam Game Server / Docker Containers
@@ -35,6 +34,7 @@ Uptime Kuma is an easy-to-use self-hosted monitoring tool.
 mkdir uptime-kuma
 cd uptime-kuma
 git clone https://github.com/mcgeezy/uptime-kuma.git .
+cp docker-compose.template.yaml docker-compose.yaml
 docker compose up -d --build
 ```
 
@@ -73,3 +73,6 @@ Telegram Notification Sample:
 
 <img src="https://louislam.net/uptimekuma/3.jpg" width="400" alt="Uptime Kuma Telegram Notification Sample Screenshot" />
 
+## Issues:
+
+- Ping test failing.  I'm currently using TCP Port test to known up tcp port on hosts I was previously pinging.
