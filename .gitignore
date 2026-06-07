@@ -25,4 +25,4 @@ extra/exe-builder/obj
 .vs
 .vscode
 
-docker-compose*
+docker-compose.yml
